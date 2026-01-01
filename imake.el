@@ -60,11 +60,11 @@
 (defun imake (targets)
   "Read one or make TARGETS and run them."
   (interactive
-   (let ((crm-separator "\\(?:[ \t]*,[ \t]*\\|[ \t]+\\)")
-         (imake--target-alist (and (require 'marginalia nil t)
-                                   (imake-target-alist))))
-     (list (completing-read-multiple "Targets: " (imake-targets)
-                                     nil nil nil 'imake-history))))
+    (let ((crm-separator "\\(?:[ \t]*,[ \t]*\\|[ \t]+\\)")
+          (imake--target-alist (and (require 'marginalia nil t)
+                                    (imake-target-alist))))
+      (list (completing-read-multiple "Targets: " (imake-targets)
+                                      nil nil nil 'imake-history))))
   (async-shell-command
    (mapconcat #'shell-quote-argument (cons "make" targets) " ")))
 
@@ -106,5 +106,6 @@ sort -u") "\n")
 (provide 'imake)
 ;; Local Variables:
 ;; indent-tabs-mode: nil
+;; lisp-indent-local-overrides: ((cond . 0) (interactive . 0))
 ;; End:
 ;;; imake.el ends here
